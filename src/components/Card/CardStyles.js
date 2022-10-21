@@ -2,7 +2,7 @@ import styled from "styled-components";
 import background from '../../assets/img/background.png'
 
 export const Principal = styled.div`
-height: calc(100vh - 80px);
+/* height: calc(100vh - 80px); */
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
@@ -18,10 +18,44 @@ padding-top: 10px;
 }
 `;
 
-export const TituloPrincipal = styled.h1`
+export const TituloContainer = styled.div`
 text-align: center;
 background: #eeeeee;
 `;
+
+export const TituloUrnasApuradasContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 80%;
+margin: auto;
+height: 20px;
+/* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+border-radius: 10px;
+`;
+
+export const TituloUrnasApuradas = styled.div`
+background-image: linear-gradient(to right, blue, rgba(255,0,0,1));
+height: 10px;
+width: ${({ porcentagem }) => (porcentagem  ? `${parseFloat(porcentagem)}%` : '0%')};
+/* width: 0%; */
+border-radius: 20px;
+
+`;
+
+// export const TituloGrid = styled.div`
+// /* display: grid;
+// grid-template-columns: 100px auto; */
+// `;
+
+// export const TGLeft = styled.div`
+// /* border: 2px solid red; */
+// `;
+
+// export const TGRight = styled.div`
+// /* border: 2px solid red; */
+
+// `;
 
 export const Container = styled.div`
 /* border: 2px solid red; */
@@ -31,7 +65,9 @@ align-items: center;
 justify-content: center;
 color: black;
 gap: 10px;
-line-height: 10px;
+/* line-height: 10px; */
+
+
 
 @media(max-width: 720px){
     grid-template-columns: 200px 200px;
@@ -53,6 +89,8 @@ align-items: center;
 border-radius: 10px;
 max-width: 300px;
 text-align: center;
+
+
 
 img{
     width: 250px;
@@ -106,11 +144,16 @@ export const BoxInfo = styled.div`
 margin: 10px;
 `;
 
-export const TituloContainer = styled.div`
-line-height: normal;
+export const TituloCandidato = styled.div`
+line-height: 20px;
+padding-bottom: 10px;
 `;
 
 export const Titulo = styled.h2`
+
+`;
+
+export const Candidato = styled.h2`
 
 @media(max-width: 720px){
     font-size: 20px;
@@ -122,12 +165,23 @@ export const Titulo = styled.h2`
 
 `;
 
-export const EleitoInfo = styled.span`
+export const Vice = styled.span`
+    font-size: 16px;
+`;
+
+export const EleitoInfo = styled.div`
 border: ${({eleito}) => (eleito ? '2px solid green' : '2px solid red')};
 background: ${({eleito}) => (eleito ? 'green' : 'red')};
 color: white;
 padding: 3px;
 border-radius: 8px;
+width: 100px;
+margin: auto;
+margin-top: 10px;
+
+@media(max-width: 760px){
+    font-size: 16px;
+}
 `;
 
 
