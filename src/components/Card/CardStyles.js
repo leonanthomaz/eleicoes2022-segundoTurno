@@ -8,8 +8,13 @@ background-repeat: no-repeat;
 background-position: center;
 padding-top: 10px;
 
+@media(min-width: 1024px) and (max-height: 600px){
+    width: 1024px;
+    height: 600px;
+    margin: auto;
+}
+
 @media(min-width: 720px){
-    height: calc(100vh);
     background-image: url('https://abradep.org/wp-content/uploads/2020/09/abradep-bg.jpg');
 }
 
@@ -21,7 +26,20 @@ padding-top: 10px;
 export const TituloContainer = styled.div`
 text-align: center;
 background: #eeeeee;
+padding: 5px;
+margin: 5px;
+border-radius: 20px;
+
 `;
+export const TituloBox = styled.div`
+margin: 5px;
+/* line-height: 15px; */
+`;
+
+export const TituloH1 = styled.h2``
+export const TituloInfoUrnas = styled.span``
+export const TituloData = styled.span``
+
 
 export const TituloUrnasApuradasContainer = styled.div`
 display: flex;
@@ -30,7 +48,6 @@ justify-content: center;
 width: 80%;
 margin: auto;
 height: 20px;
-/* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 border-radius: 10px;
 `;
 
@@ -38,24 +55,9 @@ export const TituloUrnasApuradas = styled.div`
 background-image: linear-gradient(to right, blue, rgba(255,0,0,1));
 height: 10px;
 width: ${({ porcentagem }) => (porcentagem  ? `${parseFloat(porcentagem)}%` : '0%')};
-/* width: 0%; */
 border-radius: 20px;
 
 `;
-
-// export const TituloGrid = styled.div`
-// /* display: grid;
-// grid-template-columns: 100px auto; */
-// `;
-
-// export const TGLeft = styled.div`
-// /* border: 2px solid red; */
-// `;
-
-// export const TGRight = styled.div`
-// /* border: 2px solid red; */
-
-// `;
 
 export const Container = styled.div`
 /* border: 2px solid red; */
@@ -65,9 +67,12 @@ align-items: center;
 justify-content: center;
 color: black;
 gap: 10px;
-/* line-height: 10px; */
+line-height: 10px;
 
-
+@media(max-height: 600px){
+    display: flex;
+    flex-direction: column;
+}
 
 @media(max-width: 720px){
     grid-template-columns: 200px 200px;
@@ -90,11 +95,14 @@ border-radius: 10px;
 max-width: 300px;
 text-align: center;
 
-
-
 img{
     width: 250px;
     height: 250px;
+}
+
+@media(max-height: 600px){
+    flex-direction: row;
+    max-width: none;
 }
 
 @media(max-width: 720px){
@@ -113,7 +121,6 @@ img{
     }
 }
 
-
 `;
 
 export const Imagem = styled.div`
@@ -125,7 +132,15 @@ img{
     background: #bebebe;
 }
 
-@media(max-width: 720px){
+@media(max-width: 600px) and (min-height: 600px){
+    img{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+@media(max-width: 760px) and (min-height: 300px){
     img{
         width: 180px;
         height: 180px;
