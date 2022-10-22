@@ -28,6 +28,9 @@ export const Card = ({ data }) => {
         pcomparecimento,
         abstencoes,
         pabstencoes,
+        secoes,
+        tsecoes,
+        psecoes,
         anulados,
         anuladosSJ,
         nulos,
@@ -40,6 +43,9 @@ export const Card = ({ data }) => {
             pcomparecimento,
             abstencoes,
             pabstencoes,
+            secoes,
+            tsecoes,
+            psecoes,
             anulados,
             anuladosSJ,
             nulos,
@@ -49,6 +55,7 @@ export const Card = ({ data }) => {
             totais})
         handleShowGerais()
     }
+
 
     const handleInfoCandidato = (id, nome, partido, numero, situacao) => {
         setCandidato({ id, nome, partido, numero, situacao })
@@ -64,10 +71,10 @@ export const Card = ({ data }) => {
                 <C.Titulo>
                     <h3>Acompanhe a apuração</h3>
                     <div className='titulo-header'>
-                        <b>{st.pea}%</b> das urnas apuradas
+                        <b>{st.pst}%</b> das seções apuradas
                     </div>
                     <C.TituloUrnasApuradasContainer>
-                        <b className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pea}/><b className='bright'>100%</b>
+                        <b className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pst}/><b className='bright'>100%</b>
                     </C.TituloUrnasApuradasContainer>
                     <div className='titulo-footer'>
                         <span>Última atualização: {st.dt} - {st.ht} (Horário local) - Fonte: TSE</span>
@@ -81,6 +88,9 @@ export const Card = ({ data }) => {
                     st.pc,
                     st.a,
                     st.pa,
+                    st.s,
+                    st.st,
+                    st.pst,
                     st.van,
                     st.vansj,
                     st.tvn,
