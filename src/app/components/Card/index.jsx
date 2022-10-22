@@ -8,17 +8,22 @@ import { CandidatoModal } from '../CandidatoModal'
 export const Card = ({ data }) => {
 
     const [ candidato, setCandidato ] = useState([])
+    const [ infoGerais, setInfoGerais ] = useState([])
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleFind = (id, nome, partido, numero) => {
-        setCandidato({ id, nome, partido, numero, situacao })
+    const handleInfoGerais = (validos) => {
+        setInfoGerais({validos})
         handleShow()
     }
 
+    const handleInfoCandidato = (id, nome, partido, numero, situacao) => {
+        setCandidato({ id, nome, partido, numero, situacao })
+        handleShow()
+    }
     return (
     <C.Principal >
 
@@ -37,8 +42,10 @@ export const Card = ({ data }) => {
                         <span>Última atualização: {st.dt} - {st.ht} (Horário local) - Fonte: TSE</span>
                     </div>
                 </C.Titulo>
+
                 <C.TopBar>
                    <span><a onClick={()=>{window.location.reload()}} className='atualizar'><BiRefresh/> Atualizar</a></span>
+                   <span><a onClick={()=>{handleInfoGerais(st.vnom)}} className='gerais'><BiRefresh/> Informações Gerais</a></span>
                 </C.TopBar>
 
                 <CandidatoModal 
@@ -51,7 +58,7 @@ export const Card = ({ data }) => {
                 <C.Container>
                     {st.cand.map((c, i)=>{
                         return(
-                        <C.Candidato key={i} eleito={c.e === 's'} onClick={()=>handleFind(
+                        <C.Candidato key={i} eleito={c.e === 's'} onClick={()=>handleInfoCandidato(
                             c.seq, c.nm, c.cc, c.n, c.st)}>
                             <div className='candidato-header'>
                                 <div className='candidato-left'>
