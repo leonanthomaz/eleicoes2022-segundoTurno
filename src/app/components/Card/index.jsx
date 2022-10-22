@@ -4,26 +4,46 @@ import imgLula from '../../assets/img/lula.png'
 import imgBolsonaro from '../../assets/img/bolsonaro.png'
 import { BiRefresh } from "react-icons/bi";
 import { CandidatoModal } from '../CandidatoModal'
+import { GeraisModal } from '../GeraisModal'
+
+import { FaVoteYea } from "react-icons/fa";
 
 export const Card = ({ data }) => {
 
-    const [ candidato, setCandidato ] = useState([])
-    const [ infoGerais, setInfoGerais ] = useState([])
+    const [ candidato, setCandidato ] = useState([]);
+    const [ infoGerais, setInfoGerais ] = useState([]);
 
-    const [show, setShow] = useState(false);
+    const [showCandidato, setShowCandidato] = useState(false);
+    const [showGerais, setShowGerais] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleCloseCandidato = () => setShowCandidato(false);
+    const handleShowCandidato = () => setShowCandidato(true);
 
-    const handleInfoGerais = (validos) => {
-        setInfoGerais({validos})
-        handleShow()
+    const handleCloseGerais = () => setShowGerais(false);
+    const handleShowGerais = () => setShowGerais(true);
+
+    const handleInfoGerais = (
+        validos,
+        anulados,
+        anuladosSJ,
+        nulos,
+        branco,
+        totais) => {
+        setInfoGerais({
+            validos,
+            anulados,
+            anuladosSJ,
+            nulos,
+            branco,
+            totais})
+        handleShowGerais()
     }
 
     const handleInfoCandidato = (id, nome, partido, numero, situacao) => {
         setCandidato({ id, nome, partido, numero, situacao })
-        handleShow()
+        handleShowCandidato()
     }
+
     return (
     <C.Principal >
 
@@ -45,14 +65,27 @@ export const Card = ({ data }) => {
 
                 <C.TopBar>
                    <span><a onClick={()=>{window.location.reload()}} className='atualizar'><BiRefresh/> Atualizar</a></span>
-                   <span><a onClick={()=>{handleInfoGerais(st.vnom)}} className='gerais'><BiRefresh/> Informações Gerais</a></span>
+                   <span><a onClick={()=>{handleInfoGerais(
+                    st.vnom,
+                    st.van,
+                    st.vansj,
+                    st.tvn,
+                    st.vb,
+                    st.tv)}} className='gerais'><FaVoteYea/> Informações Gerais</a></span>
                 </C.TopBar>
+
+                <GeraisModal 
+                infoGerais={infoGerais} 
+                handleCloseGerais={handleCloseGerais}
+                showGerais={showGerais}
+                setShowGerais={setShowGerais}
+                />
 
                 <CandidatoModal 
                 candidato={candidato} 
-                handleClose={handleClose}
-                show={show}
-                setShow={setShow}
+                handleCloseCandidato={handleCloseCandidato}
+                showCandidato={showCandidato}
+                setShowCandidato={setShowCandidato}
                 />
                 
                 <C.Container>
