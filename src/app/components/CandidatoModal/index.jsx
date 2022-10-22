@@ -1,10 +1,9 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
+import React from 'react'
+import Modal from 'react-bootstrap/Modal'
+import * as CM from './CandidatoModalStyles'
 
 import imgLula from '../../assets/img/lula.png'
 import imgBolsonaro from '../../assets/img/bolsonaro.png'
-
-import { AiOutlineClose } from "react-icons/ai";
 
 export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato }) => {
     
@@ -29,21 +28,29 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
           }}>{candidato.nome}</h1>
           </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{background: '#ecececce', padding: '20px'}}>
-      <div className="" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <img 
-          src={
-            candidato.nome === "LULA" ? imgLula 
-            : candidato.nome === "JAIR BOLSONARO" ? imgBolsonaro 
-            :  ''} alt={candidato.nome} width={150} />
-            
-      </div><br/>
-      <div style={{textAlign: 'center', fontSize: '32px', fontWeight: 'bold'}}>
-          <p>{candidato.numero}</p>
-      </div><br/>
-      <h4 style={{textAlign: 'center', fontSize: '16px'}}>{candidato.partido}</h4><br/>
-      <br/>
-      situação: {candidato.situacao}
+      <Modal.Body>
+
+        <CM.Container>
+          <CM.Header>
+            <div className='header-info'>
+              <div className='header-img'>
+                <img 
+                  src={
+                    candidato.nome === "LULA" ? imgLula 
+                    : candidato.nome === "JAIR BOLSONARO" ? imgBolsonaro 
+                    : ''} alt={candidato.nome} width={150} 
+                  />
+                </div>
+                <h3>{candidato.numero}</h3>
+            </div>
+            <div className='header-info'>
+              <h4>Partido (Coligação):</h4> 
+              <h5>{candidato.partido}</h5>
+              <h4>Situação: <span>{candidato.situacao}</span></h4> 
+            </div>
+          </CM.Header>
+        </CM.Container>  
+          
       </Modal.Body>
 
       <Modal.Footer>
