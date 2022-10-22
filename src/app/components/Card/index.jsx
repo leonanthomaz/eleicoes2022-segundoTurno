@@ -88,6 +88,15 @@ export const Card = ({ data }) => {
                                         }
                                     </h2>
                                     <h5>Vice: {c.nv}</h5>
+                                    {/* {c.st === "Eleito" ? 
+                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
+                                        <span>2º Turno</span>
+                                    </C.EleitoInfo>
+                                    : 
+                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
+                                        <span>Não Eleito</span>
+                                    </C.EleitoInfo>
+                                    } */}
                                     {c.e === 's' ? 
                                         <C.EleitoInfo eleito={c.e === 's'}>
                                         {c.e === 's' ? <span>2º Turno</span> : <span>Não Eleito</span> }
