@@ -1,9 +1,26 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import * as C from './CardStyles'
-import imgLula from '../../assets/img/lula-img.png'
-import imgBolsonaro from '../../assets/img/bolsonaro-img.png'
+import imgLula from '../../assets/img/lula.png'
+import imgBolsonaro from '../../assets/img/bolsonaro.png'
+import { BiRefresh } from "react-icons/bi";
+import { CandidatoModal } from '../CandidatoModal'
 
 export const Card = ({ data }) => {
+
+    const [ list, setList ] = useState([])
+    console.log('listagem:',list)
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleFind = (id, nome, partido, numero) => {
+        console.log(id)
+        // const item = data.filter(e => e.map(i => i.seq === id))
+        setList({ id, nome, partido, numero })
+        handleShow()
+    }
 
     return (
     <C.Principal >
@@ -23,14 +40,29 @@ export const Card = ({ data }) => {
                         <span>Última atualização: {st.dt} - {st.ht} (Horário local) - Fonte: TSE</span>
                     </div>
                 </C.Titulo>
+                <C.TopBar>
+                   <span><a onClick={()=>{window.location.reload()}} className='atualizar'><BiRefresh/> Atualizar</a></span>
+                </C.TopBar>
+
+                <CandidatoModal 
+                list={list} 
+                handleClose={handleClose}
+                show={show}
+                setShow={setShow}
+                />
+                
                 <C.Container>
                     {st.cand.map((c, i)=>{
                         return(
-                        <C.Candidato key={i} eleito={c.e === 's'}>
+                        <C.Candidato key={i} eleito={c.e === 's'} onClick={()=>handleFind(
+                            c.seq, c.nm, c.cc, c.n)}>
                             <div className='candidato-header'>
                                 <div className='candidato-left'>
                                     <div className='candidato-img'>
-                                        <img src={c.nm === 'LULA' ? imgLula : imgBolsonaro} />
+                                        <img src={
+                                            c.nm === "LULA" ? imgLula 
+                                            : c.nm === "JAIR BOLSONARO" ? imgBolsonaro 
+                                            : ''} />
                                     </div>
                                 </div>
             
@@ -48,11 +80,17 @@ export const Card = ({ data }) => {
     
                             <div className='candidato-footer'>
                                 <div className='candidato-nome'>
-                                    <h2>{c.nm === 'LULA' ? 'LULA' : 'BOLSONARO' }</h2>
+                                    <h2>
+                                        {
+                                            c.nm === "LULA" ? 'LULA' 
+                                            : c.nm === "JAIR BOLSONARO" ? 'BOLSONARO' 
+                                            : ''
+                                        }
+                                    </h2>
                                     <h5>Vice: {c.nv}</h5>
                                     {c.e === 's' ? 
                                         <C.EleitoInfo eleito={c.e === 's'}>
-                                        {c.e === 's' ? <span>Eleito</span> : <span>Não Eleito</span> }
+                                        {c.e === 's' ? <span>2º Turno</span> : <span>Não Eleito</span> }
                                         </C.EleitoInfo> :
                                         ''}
                                 </div>
