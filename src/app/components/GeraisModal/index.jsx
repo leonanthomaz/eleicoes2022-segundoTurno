@@ -1,17 +1,14 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 
-import imgLula from '../../assets/img/lula.png'
-import imgBolsonaro from '../../assets/img/bolsonaro.png'
-
 import { AiOutlineClose } from "react-icons/ai";
 
-export const CandidatoModal = ({ candidato, handleClose, show }) => {
+export const GeraisModal = ({ }) => {
     
   return (
     <Modal
       size="md"
-      aria-labelledby={`Janela com informações do candidato ${candidato.nome}`}
+      aria-labelledby={`Janela com informações Gerais`}
       centered
       show={show} 
       onHide={handleClose}
@@ -26,24 +23,21 @@ export const CandidatoModal = ({ candidato, handleClose, show }) => {
           // borderBottom: '2px solid',
           lineHeight: '5rem',
           fontWeight: 900
-          }}>{candidato.nome}</h1>
+          }}>Gerais</h1>
           </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#ecececce', padding: '20px'}}>
       <div className="" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <img 
-          src={
-            candidato.nome === "LULA" ? imgLula 
-            : candidato.nome === "JAIR BOLSONARO" ? imgBolsonaro 
-            : ''} alt={candidato.nome} width={150} />
             
       </div><br/>
       <div style={{textAlign: 'center', fontSize: '32px', fontWeight: 'bold'}}>
-          <p>{candidato.numero}</p>
+          {/* <p>{list.numero}</p> */}
       </div><br/>
-      <h4 style={{textAlign: 'center', fontSize: '16px'}}>{candidato.partido}</h4><br/>
+      <h4 style={{textAlign: 'center', fontSize: '16px'}}>
+        {/* {list.partido} */}
+      </h4><br/>
       <br/>
-      situação: {candidato.situacao}
+      {/* situação: {list.situacao} */}
       </Modal.Body>
 
       <Modal.Footer>

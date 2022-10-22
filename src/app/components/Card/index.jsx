@@ -7,8 +7,7 @@ import { CandidatoModal } from '../CandidatoModal'
 
 export const Card = ({ data }) => {
 
-    const [ list, setList ] = useState([])
-    console.log('listagem:',list)
+    const [ candidato, setCandidato ] = useState([])
 
     const [show, setShow] = useState(false);
 
@@ -16,9 +15,7 @@ export const Card = ({ data }) => {
     const handleShow = () => setShow(true);
 
     const handleFind = (id, nome, partido, numero) => {
-        console.log(id)
-        // const item = data.filter(e => e.map(i => i.seq === id))
-        setList({ id, nome, partido, numero })
+        setCandidato({ id, nome, partido, numero, situacao })
         handleShow()
     }
 
@@ -45,7 +42,7 @@ export const Card = ({ data }) => {
                 </C.TopBar>
 
                 <CandidatoModal 
-                list={list} 
+                candidato={candidato} 
                 handleClose={handleClose}
                 show={show}
                 setShow={setShow}
@@ -55,7 +52,7 @@ export const Card = ({ data }) => {
                     {st.cand.map((c, i)=>{
                         return(
                         <C.Candidato key={i} eleito={c.e === 's'} onClick={()=>handleFind(
-                            c.seq, c.nm, c.cc, c.n)}>
+                            c.seq, c.nm, c.cc, c.n, c.st)}>
                             <div className='candidato-header'>
                                 <div className='candidato-left'>
                                     <div className='candidato-img'>
@@ -88,20 +85,15 @@ export const Card = ({ data }) => {
                                         }
                                     </h2>
                                     <h5>Vice: {c.nv}</h5>
-                                    {/* {c.st === "Eleito" ? 
+                                    {c.st === "Eleito" && c.e === 's' ? 
                                     <C.EleitoInfo eleito={c.st === "Eleito"}>
                                         <span>2º Turno</span>
                                     </C.EleitoInfo>
                                     : 
-                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
+                                    <C.EleitoInfo eleito={c.st === "Eleito" && c.e === 's'}>
                                         <span>Não Eleito</span>
                                     </C.EleitoInfo>
-                                    } */}
-                                    {c.e === 's' ? 
-                                        <C.EleitoInfo eleito={c.e === 's'}>
-                                        {c.e === 's' ? <span>2º Turno</span> : <span>Não Eleito</span> }
-                                        </C.EleitoInfo> :
-                                        ''}
+                                    }
                                 </div>
                             </div>
                         </C.Candidato>

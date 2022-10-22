@@ -38,7 +38,7 @@ align-items: center;
     margin: 10px;
     padding: 7px;
     color: white;
-    border-radius: 10px;
+    border-radius: 10px;  
     text-decoration: none;
     cursor: pointer;
 }
@@ -108,6 +108,10 @@ padding: 8px;
     width: 180px;
 }
 
+@media(max-width: 375px){
+    width: 170px;
+}
+
 .candidato-header{
     padding: 10px;
     display: grid;
@@ -123,8 +127,9 @@ padding: 8px;
         justify-content: center;
 
         .candidato-img{
+            /* background: #93f893; */
             background: ${({eleito}) => (eleito ? '#93f893' : '#f89393')};
-            
+
             border-radius: 50%;
             width: 150px;
             height: 150px;
@@ -224,10 +229,19 @@ padding: 8px;
 
         @media(max-width: 450px){
             h2{
-                font-size: 18px;
+                font-size: 20px;
             }
             h5{
                 font-size: 12px;
+            }
+        }
+
+        @media(max-width: 370px){
+            h2{
+                font-size: 18px;
+            }
+            h5{
+                font-size: 11px;
             }
         }
     }
