@@ -2,11 +2,12 @@ import React, { Fragment, useState } from 'react'
 import * as C from './CardStyles'
 import imgLula from '../../assets/img/lula.png'
 import imgBolsonaro from '../../assets/img/bolsonaro.png'
+
 import { BiRefresh } from "react-icons/bi";
+import { FaVoteYea } from "react-icons/fa";
+
 import { CandidatoModal } from '../CandidatoModal'
 import { GeraisModal } from '../GeraisModal'
-
-import { FaVoteYea } from "react-icons/fa";
 
 export const Card = ({ data }) => {
 
@@ -121,16 +122,16 @@ export const Card = ({ data }) => {
                                         {
                                             c.nm === "LULA" ? 'LULA' 
                                             : c.nm === "JAIR BOLSONARO" ? 'BOLSONARO' 
-                                            : ''
+                                            :  ''
                                         }
                                     </h2>
                                     <h5>Vice: {c.nv}</h5>
-                                    {c.st === "Eleito" && c.e === 's' ? 
+                                    {c.st === "Eleito" ? 
                                     <C.EleitoInfo eleito={c.st === "Eleito"}>
-                                        <span>2º Turno</span>
+                                        <span>Eleito</span>
                                     </C.EleitoInfo>
                                     : 
-                                    <C.EleitoInfo eleito={c.st === "Eleito" && c.e === 's'}>
+                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
                                         <span>Não Eleito</span>
                                     </C.EleitoInfo>
                                     }

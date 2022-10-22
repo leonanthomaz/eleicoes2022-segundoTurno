@@ -6,15 +6,15 @@ import imgBolsonaro from '../../assets/img/bolsonaro.png'
 
 import { AiOutlineClose } from "react-icons/ai";
 
-export const CandidatoModal = ({ candidato, handleClose, show }) => {
+export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato }) => {
     
   return (
     <Modal
       size="md"
       aria-labelledby={`Janela com informações do candidato ${candidato.nome}`}
       centered
-      show={show} 
-      onHide={handleClose}
+      show={showCandidato} 
+      onHide={handleCloseCandidato}
       style={{background: '#14141498'}}
      >
       <Modal.Header closeButton>
@@ -35,7 +35,7 @@ export const CandidatoModal = ({ candidato, handleClose, show }) => {
           src={
             candidato.nome === "LULA" ? imgLula 
             : candidato.nome === "JAIR BOLSONARO" ? imgBolsonaro 
-            : ''} alt={candidato.nome} width={150} />
+            :  ''} alt={candidato.nome} width={150} />
             
       </div><br/>
       <div style={{textAlign: 'center', fontSize: '32px', fontWeight: 'bold'}}>
