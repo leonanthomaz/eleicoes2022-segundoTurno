@@ -108,7 +108,7 @@ padding: 8px;
     width: 180px;
 }
 
-@media(max-width: 375px){
+@media(max-width: 370px){
     width: 170px;
 }
 
