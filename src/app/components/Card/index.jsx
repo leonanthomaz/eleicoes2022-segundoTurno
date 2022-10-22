@@ -20,7 +20,7 @@ export const Card = ({ data }) => {
                         <b className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pea}/><b className='bright'>100%</b>
                     </C.TituloUrnasApuradasContainer>
                     <div className='titulo-footer'>
-                        <span>Última atualização {st.dt} {st.ht} (Horário local)</span>
+                        <span>Última atualização: {st.dt} - {st.ht} (Horário local) - Fonte: TSE</span>
                     </div>
                 </C.Titulo>
                 <C.Container>
