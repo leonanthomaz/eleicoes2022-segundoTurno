@@ -66,17 +66,17 @@ export const Card = ({ data }) => {
             return(
             <Fragment key={i}>
                 <C.Titulo>
-                        {/* <h3>Acompanhe a apuração do 1º Turno</h3> */}
-                        <div aria-label={`Seções apuradas até o momento: ${st.pst}%`} className='titulo-header'>
-                            <b>{st.pst}%</b> das seções apuradas
-                        </div>
-                        <C.TituloUrnasApuradasContainer>
-                            <b aria-label="Ícone representando o começo da barra de porcentagem, começando em 0%" className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pst} aria-label={`Porcentagem real e atual da apuração: ${st.pst}%`}/><b aria-label="Ícone representando o final da barra de porcentagem, finalizando em 100%" className='bright'>100%</b>
-                        </C.TituloUrnasApuradasContainer>
-                        <div className='titulo-footer'>
-                            <span aria-label={`Última atualização: dia ${st.dg} às ${st.hg} horas, horário de Brasília`}>Última atualização: {st.dg} - {st.hg} (Horário local) - Fonte: TSE</span>
-                        </div>
-                        <C.TopBar>
+                    {/* <h3>Acompanhe a apuração do 1º Turno</h3> */}
+                    <div aria-label={`Seções apuradas até o momento: ${st.pst}%`} className='titulo-header'>
+                        <b>{st.pst}%</b> das seções apuradas
+                    </div>
+                    <C.TituloUrnasApuradasContainer>
+                        <b aria-label="Ícone representando o começo da barra de porcentagem, começando em 0%" className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pst} aria-label={`Porcentagem real e atual da apuração: ${st.pst}%`}/><b aria-label="Ícone representando o final da barra de porcentagem, finalizando em 100%" className='bright'>100%</b>
+                    </C.TituloUrnasApuradasContainer>
+                    <div className='titulo-footer'>
+                        <span aria-label={`Última atualização: dia ${st.dg} às ${st.hg} horas, horário de Brasília`}>Última atualização: {st.dg} - {st.hg} (Horário local) - Fonte: TSE</span>
+                    </div>
+                    <C.TopBar>
                         <span><a 
                             aria-label="Botão para atualizar página" className='atualizar' onClick={()=>{window.location.reload()}}><C.IconAtualizar/> Atualizar</a></span>
                         <span><a 
@@ -97,25 +97,6 @@ export const Card = ({ data }) => {
                         st.tv)}}><C.IconVotos/>Informações Gerais</a></span>
                     </C.TopBar>
                 </C.Titulo>
-
-                <C.TopBar>
-                   <span><a className='atualizar' onClick={()=>{window.location.reload()}}><C.IconAtualizar/> Atualizar</a></span>
-                   <span><a onClick={()=>{handleInfoGerais(
-                    st.vnom,
-                    st.pc,
-                    st.a,
-                    st.pa,
-                    st.s,
-                    st.st,
-                    st.pst,
-                    st.van,
-                    st.vansj,
-                    st.tvn,
-                    st.ptvn,
-                    st.vb,
-                    st.pvb,
-                    st.tv)}} className='gerais'><C.IconVotos/> Informações Gerais</a></span>
-                </C.TopBar>
 
                 <GeraisModal 
                 infoGerais={infoGerais} 
