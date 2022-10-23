@@ -65,7 +65,7 @@ export const Card = ({ data }) => {
             return(
             <Fragment key={i}>
                 <C.Titulo>
-                    <h3>Acompanhe a apuração do 2º Turno</h3>
+                    {/* <h3>Acompanhe a apuração do 2º Turno</h3> */}
                     <div className='titulo-header'>
                         <b>{st.pst}%</b> das seções apuradas
                     </div>

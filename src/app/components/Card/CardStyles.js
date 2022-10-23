@@ -20,21 +20,38 @@ background-position: center;
 padding-top: 10px;
 background-image: url('https://abradep.org/wp-content/uploads/2020/09/abradep-bg.jpg');
 
+/* @media(max-height: 500px){
+    display: grid;
+    grid-template-columns: auto auto;
+} */
 `;
 
 export const Titulo = styled.div`
+/* border: 2px solid red; */
 padding: 10px;
 text-align: center;
 line-height: 20px;
 background: #4747477c;
 color: white;
-padding-top: 20px;
+padding-top: 10px;
 
 .titulo-footer{
     font-size: 13px;
 }
-`;
 
+@media(max-height: 500px){
+    max-height: 130px;
+    padding-top: 0px;
+    
+   .titulo-header{
+        font-size: 14px;
+   }
+
+   .titulo-footer{
+        font-size: 10px;
+   }
+}
+`;
 
 export const TopBar = styled.div`
 /* border: 2px solid red; */
@@ -54,6 +71,12 @@ align-items: center;
     text-decoration: none;
     cursor: pointer;
     font-size: 16px;
+
+    @media(max-height: 500px){
+        font-size: 12px;
+        margin: 3px;
+        padding: 2px;
+    }
 }
 
 .gerais{
@@ -67,10 +90,17 @@ align-items: center;
     text-decoration: none;
     cursor: pointer;
     font-size: 16px;
+
+    @media(max-height: 500px){
+        font-size: 12px;
+        margin: 3px;
+        padding: 4px;
+    }
 }
 
-`;
 
+
+`;
 
 export const TituloUrnasApuradasContainer = styled.div`
 display: grid;
@@ -105,13 +135,15 @@ display: grid;
 grid-template-columns: auto auto;
 justify-content: center;
 align-items: center;
-gap: 10px;
+gap: 8px;
 padding-top: 10px;
 
+
 @media(max-width: 375px){
-    gap: 5px;
+    gap: 3px;
     padding-top: 5px;
 }
+
 
 `;
 
@@ -141,17 +173,29 @@ padding: 8px;
 }
 
 @media(max-width: 375px){
-    width: 170px;
+    width: 165px;
+    padding: 3px;
 }
 
 .candidato-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: auto;
     padding: 10px;
-    display: grid;
-    grid-template-columns: auto auto;
+    
 
-    @media(max-width: 760px){
-        max-height: 120px;
+    @media(max-height: 500px) and (min-width: 760px){
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 5px;
     }
+
+    /* @media(max-width: 760px){
+        width: 200px;
+        height: 150px;
+    } */
 
     .candidato-left{
         display: flex;
@@ -159,43 +203,38 @@ padding: 8px;
         justify-content: center;
 
         .candidato-img{
-
             border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            margin-left: 10px;
+            width: 150px;
+            height: 150px;
 
             img{
                 background: ${({eleito}) => (eleito ? '#93f893' : '#f89393')};
                 width: 100%;
+                border-radius: 50%;
+            }
+
+            @media(max-height: 500px){
+                /* width: 130px; */
+                width: 100px;
+                height: 100px;
+                margin-right: 24px;
+                padding-bottom: 30px;
             }
 
             @media(max-width: 760px){
-                background: none;
+                width: 130px;
+                height: 130px;
 
                 img{
                     border: ${({eleito}) => (eleito ? '2px solid #93f893' : '2px solid #f89393')};
                 }
             }
 
-            img{
-                width: 100%;
-                border-radius: 50%;
-            }
-
-            @media(max-width: 760px) or (max-height: 500px){
+            @media(max-width: 450px){
                 width: 90px;
                 height: 90px;
+                margin: auto;
 
-                img{
-                    width: 100%;
-                }
-            }
-
-            @media(max-width: 450px){
-                width: 70px;
-                height: 70px;
-                
                 img{
                     width: 100%;
                 }
@@ -205,34 +244,50 @@ padding: 8px;
     }
 
     .candidato-right{
-        line-height: 9px;
+        /* line-height: 9px; */
+        text-align: center;
+        padding-top: 10px;
 
         .candidato-votos{
-            text-align: end;
-            margin-left: 10px;
+
+            @media(max-height: 500px){
+                /* width: 130px; */
+                text-align: end;
+                margin-right: 25px;
+            }
 
             .candidato-porcentagem h3{
 
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: 900;
-                margin-right: 10px;
+                color: #090983;
 
+                @media(max-height: 500px){
+                    /* width: 130px; */
+                    font-size: 35px;
+                }
 
                 @media(max-width: 760px){
-                    font-size: 22px;
+                    font-size: 32px;
                 }
 
                 @media(max-width: 450px){
-                    font-size: 20px;
+                    font-size: 30px;
                 }
             }
 
             .candidato-qtd-votos span{
-                text-align: end;
+               
                 font-size: 16px;
                 color: #838383;
                 line-height: 15px;
-                margin-right: 10px;
+
+                @media(max-height: 500px){
+                    /* width: 130px; */
+                    font-size: 12px;
+                    text-align: end;
+                    
+                }
 
                 @media(max-width: 760px){
                     font-size: 12px;
@@ -243,46 +298,53 @@ padding: 8px;
 }
 
 .candidato-footer{
+    text-align: center;
 
     .candidato-nome{
-        /* line-height: 5px; */
-        text-align: center;
 
         h2{
             font-size: 30px;
             font-weight: 900;
-        }
-        h5{
-            font-size: 18px;
-        }
-       
-        @media(max-width: 760px){
-            h2{
+            color: #187918;
+
+            @media(max-height: 500px){
+                font-size: 25px;
+            }
+
+            @media(max-width: 760px){
+                font-size: 25px;
+            }
+
+            @media(max-width: 500px){
                 font-size: 20px;
             }
-            h5{
-                font-size: 14px;
-            }
-        }
 
-        @media(max-width: 450px){
-            h2{
+            @media(max-width: 375px){
                 font-size: 18px;
             }
-            h5{
-                font-size: 12px;
-            }
         }
 
-        @media(max-width: 370px){
-            h2{
-                font-size: 16px;
+        h5{
+            font-size: 18px;
+
+            @media(max-height: 500px){
+                font-size: 14px;
             }
-            h5{
-                font-size: 11px;
+
+            @media(max-width: 760px){
+                font-size: 14px;
+            }
+
+            @media(max-width: 500px){
+                font-size: 12px;
+            }
+
+            @media(max-width: 375px){
+                font-size: 10px;
             }
         }
     }
+
     .candidato-qtd-votos{
         text-align: end;
 
@@ -308,11 +370,9 @@ height: 12px;
 padding: 10px;
 border-radius: 8px;
 
-/* border: ${({eleito}) => (eleito === "s" ? '2px solid green' : eleito === "n" ? '2px solid red' : 'none')};
-background: ${({eleito}) => (eleito === "s" ? 'green' : eleito === "n" ? 'red' : 'none')}; */
+border: ${({eleito}) => (eleito === "s" ? '2px solid green' : eleito === "n" ? '2px solid red' : 'none')};
+background: ${({eleito}) => (eleito === "s" ? 'green' : eleito === "n" ? 'red' : 'none')};
 
-border: ${({eleito}) => (eleito === "s" ? '2px solid green' : '')};
-background: ${({eleito}) => (eleito === "s" ? 'green' : '')};
 
 span{
     color: white;
