@@ -18,7 +18,7 @@ background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
 padding-top: 10px;
-background-image: url('https://abradep.org/wp-content/uploads/2020/09/abradep-bg.jpg');
+background-image: url('https://cep.unifesp.br/images/abstrato1.png');
 
 /* @media(max-height: 500px){
     display: grid;
