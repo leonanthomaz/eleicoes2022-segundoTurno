@@ -22,14 +22,12 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
           color: '#14141498', 
           textAlign: 'center', 
           marginTop: '20px',
-          // borderBottom: '2px solid',
           lineHeight: '5rem',
           fontWeight: 900
           }}>{candidato.nome}</h1>
           </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-
         <CM.Container>
           <CM.Header>
             <div className='header-info'>
@@ -44,17 +42,22 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
                 <h3>{candidato.numero}</h3>
             </div>
             <div className='header-info'>
-              <h4>Partido (Coligação):</h4> 
-              <h5>{candidato.partido}</h5>
-              <h4>Situação: <span>{candidato.situacao}</span></h4> 
+              <div className='header-h'>
+                  <h4>Partido (Coligação):</h4> 
+                  <h5>{candidato.partido}</h5>
+              </div>
+              <div className='header-f'>
+                <h3>{candidato.porcentagem}%</h3>
+                Qtd de votos:<span>{Number(candidato.totalvotos).toLocaleString('pt-BR')}</span>
+              </div>
+              <span>Situação: <span>{candidato.situacao === 'n' ? candidato.situacao : 'Indefinida'}</span></span> 
             </div>
           </CM.Header>
         </CM.Container>  
-          
       </Modal.Body>
 
       <Modal.Footer>
-
+          Fonte: TSE
       </Modal.Footer>
     </Modal>
   )

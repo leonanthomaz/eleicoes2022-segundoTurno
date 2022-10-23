@@ -144,13 +144,16 @@ padding: 8px;
         justify-content: center;
 
         .candidato-img{
-            /* background: #93f893; */
-            background: ${({eleito}) => (eleito ? '#93f893' : '#f89393')};
 
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-right: 24px;
+            width: 180px;
+            height: 180px;
+            margin-left: 10px;
+
+            img{
+                background: ${({eleito}) => (eleito ? '#93f893' : '#f89393')};
+                width: 100%;
+            }
 
             @media(max-width: 760px){
                 background: none;
@@ -166,8 +169,8 @@ padding: 8px;
             }
 
             @media(max-width: 760px) or (max-height: 500px){
-                width: 100px;
-                margin: auto;
+                width: 90px;
+                height: 90px;
 
                 img{
                     width: 100%;
@@ -175,9 +178,9 @@ padding: 8px;
             }
 
             @media(max-width: 450px){
-                width: 80px;
-                margin: auto;
-
+                width: 70px;
+                height: 70px;
+                
                 img{
                     width: 100%;
                 }
@@ -197,6 +200,8 @@ padding: 8px;
 
                 font-size: 30px;
                 font-weight: 900;
+                margin-right: 10px;
+
 
                 @media(max-width: 760px){
                     font-size: 22px;
@@ -212,6 +217,7 @@ padding: 8px;
                 font-size: 16px;
                 color: #838383;
                 line-height: 15px;
+                margin-right: 10px;
 
                 @media(max-width: 760px){
                     font-size: 12px;
@@ -287,9 +293,11 @@ height: 12px;
 padding: 10px;
 border-radius: 8px;
 
-border: ${({eleito}) => (eleito ? '2px solid green' : '2px solid red')};
-background: ${({eleito}) => (eleito ? 'green' : 'red')};
+/* border: ${({eleito}) => (eleito === "s" ? '2px solid green' : eleito === "n" ? '2px solid red' : 'none')};
+background: ${({eleito}) => (eleito === "s" ? 'green' : eleito === "n" ? 'red' : 'none')}; */
 
+border: ${({eleito}) => (eleito === "s" ? '2px solid green' : '')};
+background: ${({eleito}) => (eleito === "s" ? 'green' : '')};
 
 span{
     color: white;

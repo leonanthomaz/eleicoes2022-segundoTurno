@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import * as C from './CardStyles'
-import imgLula from '../../assets/img/lula.png'
-import imgBolsonaro from '../../assets/img/bolsonaro.png'
+import imgLula from '../../assets/img/lula-img.png'
+import imgBolsonaro from '../../assets/img/bolsonaro-img.png'
 
 import { BiRefresh } from "react-icons/bi";
 import { FaVoteYea } from "react-icons/fa";
@@ -56,9 +56,8 @@ export const Card = ({ data }) => {
         handleShowGerais()
     }
 
-
-    const handleInfoCandidato = (id, nome, partido, numero, situacao) => {
-        setCandidato({ id, nome, partido, numero, situacao })
+    const handleInfoCandidato = (id, nome, partido, numero, situacao, porcentagem, totalvotos) => {
+        setCandidato({ id, nome, partido, numero, situacao, porcentagem, totalvotos })
         handleShowCandidato()
     }
 
@@ -69,7 +68,7 @@ export const Card = ({ data }) => {
             return(
             <Fragment>
                 <C.Titulo>
-                    <h3>Acompanhe a apuração</h3>
+                    <h3>Acompanhe a apuração do 2º Turno</h3>
                     <div className='titulo-header'>
                         <b>{st.pst}%</b> das seções apuradas
                     </div>
@@ -77,7 +76,7 @@ export const Card = ({ data }) => {
                         <b className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pst}/><b className='bright'>100%</b>
                     </C.TituloUrnasApuradasContainer>
                     <div className='titulo-footer'>
-                        <span>Última atualização: {st.dt} - {st.ht} (Horário local) - Fonte: TSE</span>
+                        <span>Última atualização: {st.dg} - {st.hg} (Horário local) - Fonte: TSE</span>
                     </div>
                 </C.Titulo>
 
@@ -118,7 +117,7 @@ export const Card = ({ data }) => {
                     {st.cand.map((c, i)=>{
                         return(
                         <C.Candidato key={i} eleito={c.e === 's'} onClick={()=>handleInfoCandidato(
-                            c.seq, c.nm, c.cc, c.n, c.st)}>
+                            c.seq, c.nm, c.cc, c.n, c.st, c.pvap, c.vap)}>
                             <div className='candidato-header'>
                                 <div className='candidato-left'>
                                     <div className='candidato-img'>
@@ -151,15 +150,21 @@ export const Card = ({ data }) => {
                                         }
                                     </h2>
                                     <h5>Vice: {c.nv}</h5>
-                                    {c.st === "Eleito" ? 
-                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
-                                        <span>Eleito</span>
-                                    </C.EleitoInfo>
+                                    {c.e === "s" ? 
+                                        <C.EleitoInfo eleito={c.e}>
+                                            <span>Eleito</span>
+                                        </C.EleitoInfo>
+                                    : ''}
+                                    {/* {c.e === "s" ? 
+                                        <C.EleitoInfo eleito={c.e}>
+                                            <span>Eleito</span>
+                                        </C.EleitoInfo>
                                     : 
-                                    <C.EleitoInfo eleito={c.st === "Eleito"}>
-                                        <span>Não Eleito</span>
-                                    </C.EleitoInfo>
-                                    }
+                                    c.e === "n" ?
+                                        <C.EleitoInfo eleito={c.e}>
+                                            <span>Não Eleito</span>
+                                        </C.EleitoInfo> : ''
+                                    } */}
                                 </div>
                             </div>
                         </C.Candidato>
