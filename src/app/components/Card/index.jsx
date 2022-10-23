@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import * as C from './CardStyles'
-import imgLula from '../../assets/img/lula-img.png'
-import imgBolsonaro from '../../assets/img/bolsonaro-img.png'
+import imgLula from '../../assets/img/lula.png'
+import imgBolsonaro from '../../assets/img/bolsonaro.png'
 
 import { CandidatoModal } from '../CandidatoModal'
 import { GeraisModal } from '../GeraisModal'
