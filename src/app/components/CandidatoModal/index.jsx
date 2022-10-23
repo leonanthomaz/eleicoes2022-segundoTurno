@@ -24,7 +24,9 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
           marginTop: '20px',
           lineHeight: '5rem',
           fontWeight: 900
-          }}>{candidato.nome}</h1>
+          }}>{candidato.nome === "LULA" ? 'LULA' 
+          : candidato.nome === "JAIR BOLSONARO" ? 'JAIR BOLSONARO'
+          : ''}</h1>
           </Modal.Title>
       </Modal.Header>
       <Modal.Body>
