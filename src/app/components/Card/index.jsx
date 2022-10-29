@@ -161,7 +161,7 @@ export const Card = ({ data }) => {
                                         <C.EleitoInfo eleito={c.st}>
                                             <span>Não Eleito</span>
                                         </C.EleitoInfo> 
-                                    : ''
+                                    : ""
                                     }
                                 </div>
                             </div>

@@ -14,7 +14,6 @@ export const App = () => {
     const loadData = async () => {
       await axios.get('https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c0001-e000545-r.json').then((response)=>{
         setData([response.data])
-        console.log(response.data)
       })
     }
     loadData()
