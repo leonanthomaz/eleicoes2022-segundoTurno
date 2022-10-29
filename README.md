@@ -8,7 +8,7 @@ https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c000
 
 ### Data e Hora (Atualização)
 - <b>Hora local</b>: hg  
-- <b>Horário local</b>: dg 
+- <b>Data local</b>: dg 
 
 ### Votos
 - <b>Validos</b>: vnom
