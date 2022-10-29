@@ -6,7 +6,7 @@ https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c000
 
 ## Dicionário da API
 
-### Data e Hora
+### Data e Hora (Atualização)
 - <b>Hora local</b>: hg  
 - <b>Horário local</b>: dg 
 
@@ -21,11 +21,12 @@ https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/br/br-c000
 - <b>Votos Totais</b>: tv
 
 ### Candidato
-- <b>Nome do candidato</b>: vnom
-- <b>Partido</b>: van
-- <b>Numero</b>: tvn
-- <b>Porcentagem obtida</b>: van
-- <b>Eleito</b>: e
+- <b>Identificador</b>: seq
+- <b>Nome do candidato</b>: nm
+- <b>Partido</b>: cc
+- <b>Numero</b>: n
+- <b>Situação</b>: st
+- <b>Porcentagem obtida</b>: pvap
 - <b>Total de Votos</b>: vap
 
 ### Estatisticas gerais
