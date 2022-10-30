@@ -1,15 +1,22 @@
-import React, { Fragment, useState } from 'react'
-import * as C from './CardStyles'
+import React, { Fragment, useEffect, useState } from 'react'
+import axios from "axios";
+import * as H from './HomeStyles'
 
 import imgLula from '../../assets/img/lula.png'
 import imgBolsonaro from '../../assets/img/bolsonaro.png'
 
-import { CandidatoModal } from '../CandidatoModal'
-import { GeraisModal } from '../GeraisModal'
+import { CandidatoModal } from '../../components/CandidatoModal'
+import { GeraisModal } from '../../components/GeraisModal'
 
 import BarraDeProgresso from '../../share/utils/BarraDeProgresso'
+import { Menu } from '../../components/Menu';
 
-export const Card = ({ data }) => {
+export const Home = () => {
+
+    const [ data, setData ] = useState([])
+    
+    const [ estado, setEstado ] = useState("br/br")
+    const [ click, setClick ] = useState(false)
 
     const [ candidato, setCandidato ] = useState([]);
     const [ infoGerais, setInfoGerais ] = useState([]);
@@ -17,11 +24,31 @@ export const Card = ({ data }) => {
     const [showCandidato, setShowCandidato] = useState(false);
     const [showGerais, setShowGerais] = useState(false);
 
-    const handleCloseCandidato = () => setShowCandidato(false);
     const handleShowCandidato = () => setShowCandidato(true);
+    const handleCloseCandidato = () => setShowCandidato(false);
 
-    const handleCloseGerais = () => setShowGerais(false);
     const handleShowGerais = () => setShowGerais(true);
+    const handleCloseGerais = () => setShowGerais(false);
+
+
+    const handleClick = () => {
+        setClick(!click)
+    }
+
+    const closeNavbar = () => {
+        if(click === true){
+          setClick(false)
+        }
+    }
+
+    useEffect(()=>{
+        const loadData = async () => {
+        await axios.get(`https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/${estado}-c0001-e000545-r.json`).then((response)=>{
+            setData([response.data])
+        })
+        }
+        loadData()
+    },[estado])
 
     const handleInfoGerais = (
         validos,
@@ -62,26 +89,26 @@ export const Card = ({ data }) => {
     }
 
     return (
-    <C.Principal >
+    <H.Principal >
 
-        {data.map((st, i)=>{
+        {data && data.map((st, i)=>{
             return(
             <Fragment key={i}>
-                <C.Titulo>
-                    {/* <h3>Acompanhe a apuração do 1º Turno</h3> */}
+                <Menu setEstado={setEstado} setClick={setClick} click={click} closeNavbar={closeNavbar}/>
+                <H.Titulo>
                     <div aria-label={`Seções apuradas até o momento: ${st.pst}%`} className='titulo-header'>
                         <b>{st.pst}%</b> das seções apuradas
                     </div>
-                    <C.TituloUrnasApuradasContainer>
-                        <C.TituloUrnasApuradas aria-label="Barra de progresso das urnas apuradas, iniciando em 0% e finalizando em 100%"><BarraDeProgresso bgcolor={'linear-gradient(to right,#3737c2, #ff0000)'} progress={parseInt(st.pst)} height={20} /></C.TituloUrnasApuradas>
-                        {/* <b aria-label="Ícone representando o começo da barra de porcentagem, começando em 0%" className='bleft'>0%</b><C.TituloUrnasApuradas porcentagem={st.pst} aria-label={`Porcentagem real e atual da apuração: ${st.pst}%`}/><b aria-label="Ícone representando o final da barra de porcentagem, finalizando em 100%" className='bright'>100%</b> */}
-                    </C.TituloUrnasApuradasContainer>
+                    <H.TituloUrnasApuradasContainer>
+                        <H.TituloUrnasApuradas aria-label="Barra de progresso das urnas apuradas, iniciando em 0% e finalizando em 100%"><BarraDeProgresso bgcolor={'linear-gradient(to right,#3737c2, #ff0000)'} progress={parseInt(st.pst)} height={20} /></H.TituloUrnasApuradas>
+                    </H.TituloUrnasApuradasContainer>
                     <div className='titulo-footer'>
                         <span aria-label={`Última atualização: dia ${st.dg} às ${st.hg} horas, horário de Brasília`}>Última atualização: {st.dg} - {st.hg} (Horário local) - Fonte: TSE</span>
                     </div>
-                    <C.TopBar>
+                    <H.TopBar>
+                        <span className='estados' onClick={handleClick}><H.IconVotos/> Estados</span>
                         <span><a 
-                            aria-label="Botão para atualizar página" className='atualizar' onClick={()=>{window.location.reload()}}><C.IconAtualizar/> Atualizar</a></span>
+                            aria-label="Botão para atualizar página" className='atualizar' onClick={()=>{window.location.reload()}}><H.IconAtualizar/> Atualizar</a></span>
                         <span><a 
                         aria-label="Botão mostrar estatísticas gerais da apuração." className='gerais' onClick={()=>{handleInfoGerais(
                         st.vnom,
@@ -97,10 +124,10 @@ export const Card = ({ data }) => {
                         st.ptvn,
                         st.vb,
                         st.pvb,
-                        st.tv)}}><C.IconVotos/>Informações Gerais</a></span>
-                    </C.TopBar>
-                </C.Titulo>
-
+                        st.tv)}}><H.IconVotos/> Gerais</a></span>
+                    </H.TopBar>
+                </H.Titulo>
+            
                 <GeraisModal 
                 infoGerais={infoGerais} 
                 handleCloseGerais={handleCloseGerais}
@@ -114,16 +141,41 @@ export const Card = ({ data }) => {
                 showCandidato={showCandidato}
                 setShowCandidato={setShowCandidato}
                 />
-                
-                <C.Container>
+                <h2>{
+                    estado === "br/br" ? "Brasil" :
+                    estado === "zz/zz" ? "Exterior" :
+                    estado === "ac/ac" ? "Acre" :
+                    estado === "al/al" ? "Alagoas" :
+                    estado === "ba/ba" ? "Bahia" :
+                    estado === "ce/ce" ? "Ceará" :
+                    estado === "go/go" ? "Goiás" :
+                    estado === "ma/ma" ? "Maranhão" :
+                    estado === "mg/mg" ? "Minas Gerais" :
+                    estado === "mt/mt" ? "Mato Grosso" :
+                    estado === "ms/ms" ? "Mato Grosso do Sul" :
+                    estado === "pa/pa" ? "Pará" :
+                    estado === "pr/pr" ? "Paraná" :
+                    estado === "pb/pb" ? "Paraíba" :
+                    estado === "pe/pe" ? "Pernambuco" :
+                    estado === "rj/rj" ? "Rio de Janeiro" :
+                    estado === "rn/rn" ? "Rio Grande do Norte" :
+                    estado === "rs/rs" ? "Rio Grande do Sul" :
+                    estado === "ro/ro" ? "Rondônia" :
+                    estado === "rr/rr" ? "Roraima" :
+                    estado === "sc/sc" ? "Santa Catarina" :
+                    estado === "se/se" ? "Sergipe" :
+                    estado === "sp/sp" ? "São Paulo" :
+                    estado === "to/to" ? "Tocantins" :                    
+                    "Brasil" }</h2>
+                <H.Container>
                     {st.cand.map((c, i)=>{
                         return(
-                        <C.Candidato key={i} eleito={c.st === 's'} onClick={()=>handleInfoCandidato(
+                        <H.Candidato key={i} eleito={c.st === 's'} onClick={()=>handleInfoCandidato(
                             c.seq, c.nm, c.cc, c.n, c.st, c.pvap, c.vap)}>
                             <div className='candidato-header'>
                                 <div className='candidato-left'>
                                     <div className='candidato-img'>
-                                        <img src={
+                                    <img src={
                                             c.nm === "LULA" ? imgLula 
                                             : c.nm === "JAIR BOLSONARO" ? imgBolsonaro 
                                             : ''} alt={`Imagem do candidato ${c.nm}.`} loading="lazy" />
@@ -153,25 +205,25 @@ export const Card = ({ data }) => {
                                     </h2>
                                     <h5>Vice: {c.nv}</h5>
                                     {c.st === "s" ? 
-                                        <C.EleitoInfo eleito={c.st}>
+                                        <H.EleitoInfo eleito={c.st}>
                                             <span>Eleito</span>
-                                        </C.EleitoInfo>
+                                        </H.EleitoInfo>
                                     : 
                                     c.st === "n" ?
-                                        <C.EleitoInfo eleito={c.st}>
-                                            <span>Não Eleito</span>
-                                        </C.EleitoInfo> 
+                                        <H.EleitoInfo eleito={c.st}>
+                                            <span>Não eleito</span>
+                                        </H.EleitoInfo> 
                                     : ""
                                     }
                                 </div>
                             </div>
-                        </C.Candidato>
+                        </H.Candidato>
                         )
                     })}
-                </C.Container>
+                </H.Container>
             </Fragment>
             )
         })}
-    </C.Principal>
+    </H.Principal>
     )
 }

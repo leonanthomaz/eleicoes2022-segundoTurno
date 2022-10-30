@@ -17,7 +17,7 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
       onHide={handleCloseCandidato}
       style={{background: '#14141498'}}
      >
-    <CM.Container>
+      <CM.Container>
       <CM.Header>
           <GrClose 
           style={{color: '#14141498', 
@@ -29,7 +29,7 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
 
         <CM.Title>{candidato.nome === "LULA" ? 'LULA' 
           : candidato.nome === "JAIR BOLSONARO" ? 'JAIR BOLSONARO'
-          : ''}</CM.Title>
+          :  ''}</CM.Title>
 
       </CM.Header>
       <CM.Box>
@@ -39,7 +39,7 @@ export const CandidatoModal = ({ candidato, handleCloseCandidato, showCandidato 
                 src={
                   candidato.nome === "LULA" ? imgLula 
                   : candidato.nome === "JAIR BOLSONARO" ? imgBolsonaro 
-                  : ''} alt={`Imagem do candidato ${candidato.nome}.`} loading="lazy" width={150} 
+                  :  ''} alt={`Imagem do candidato ${candidato.nome}.`} loading="lazy" width={150} 
                 />
               </div>
               <h3>{candidato.numero}</h3>
