@@ -43,19 +43,10 @@ export const Home = () => {
 
     useEffect(()=>{
         const loadData = async () => {
-        try{
-            await axios.get(`https://resultados.tse.jus.br/oficial/comum/config/ele-c.json`);
-            await axios.get(`https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/${estado}-c0001-e000545-r.json`, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+            await axios.get(`https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/${estado}-c0001-e000545-r.json`)
             .then((response)=>{
                 setData([response.data])
             })
-        }catch(error){
-            console.log(error)
-        }
         }
         loadData()
     },[estado])
