@@ -48,8 +48,7 @@ export const Home = () => {
     useEffect(()=>{
         const loadData = async () => {
             await axios.get(`https://resultados.tse.jus.br/oficial/ele2022/545/dados-simplificados/${estado}-c0001-e000545-r.json`
-            ,{mode:'cors'})
-            .then((response)=>{
+            ,{mode:'cors'}).then((response)=>{
                 setData([response.data])
             })
         }
