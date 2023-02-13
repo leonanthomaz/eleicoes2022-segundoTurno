@@ -22,7 +22,7 @@ Portal onde apresenta estatísticas dos candidatos a presidência da República 
 Comandos básicos GIT:
 
 ```
-$ git clone https://github.com/leonanthomaz/eleicoes2022-primeiroTurno.git
+$ git clone https://github.com/leonanthomaz/eleicoes2022-segundoTurno.git
 $ cd project
 $ npm install
 ```
